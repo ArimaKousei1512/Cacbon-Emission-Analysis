@@ -54,8 +54,9 @@ SELECT * FROM countries LIMIT 5;
 | 4  | Canada       | 
 | 5  | Chile        | 
 
-## Which products contribute the most to carbon emissions?
-### AVG Top 10 prodcuct
+## 2. Questions to research
+### 2.1 Which products contribute the most to carbon emissions?
+#### AVG Top 10 prodcuct
 ```sql
 SELECT product_name, AVG(carbon_footprint_pcf) AS avg_carbon_footprint
 FROM product_emissions
@@ -76,7 +77,7 @@ LIMIT 10;
 | Mercedes-Benz S-Class (S 500)                                                                                                      | 85000.0000           | 
 | Mercedes-Benz SL (SL 350)                                                                                                          | 72000.0000           | 
 
-## 2.What are the industry groups of these products?
+## 2.2 What are the industry groups of these products?
 ### 10 industry product 
 ```sql
 WITH top10 AS (
@@ -123,7 +124,7 @@ where ti.avg_carbon_footprint = (
 | industry_group                     | avg_carbon_footprint | 
 | ---------------------------------: | -------------------: | 
 | Electrical Equipment and Machinery | 891050.7273          | 
-## What are the companies with the highest contribution to carbon emissions?
+## 2.3 What are the companies with the highest contribution to carbon emissions?
 ###
 ```sql
 WITH TopProducts AS (
