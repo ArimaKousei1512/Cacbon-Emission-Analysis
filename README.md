@@ -208,6 +208,58 @@ ORDER BY year ASC;
 ## 2.7 Which industry groups have demonstrated the most notable decrease in carbon footprints (PCFs) over time?
 ### 
 ``` SQL
+SELECT 
+    ind_gr.industry_group AS "Industry Group",
+    ROUND(AVG(CASE WHEN pr_em.year = 2013 THEN pr_em.carbon_footprint_pcf ELSE NULL END), 2) AS "2013 Emission",
+    ROUND(AVG(CASE WHEN pr_em.year = 2014 THEN pr_em.carbon_footprint_pcf ELSE NULL END), 2) AS "2014 Emission",
+    ROUND(AVG(CASE WHEN pr_em.year = 2015 THEN pr_em.carbon_footprint_pcf ELSE NULL END), 2) AS "2015 Emission",
+    ROUND(AVG(CASE WHEN pr_em.year = 2016 THEN pr_em.carbon_footprint_pcf ELSE NULL END), 2) AS "2016 Emission",
+    ROUND(AVG(CASE WHEN pr_em.year = 2017 THEN pr_em.carbon_footprint_pcf ELSE NULL END), 2) AS "2017 Emission"
+FROM 
+    product_emissions AS pr_em
+LEFT JOIN 
+    industry_groups AS ind_gr 
+ON 
+    ind_gr.id = pr_em.industry_group_id
+GROUP BY 
+    ind_gr.industry_group
+ORDER BY 
+    ind_gr.industry_group;
+```
+| Industry Group                                                         | 2013 Emission | 2014 Emission | 2015 Emission | 2016 Emission | 2017 Emission | 
+| ---------------------------------------------------------------------: | ------------: | ------------: | ------------: | ------------: | ------------: | 
+| "Consumer Durables, Household and Personal Products"                   | [NULL]        | [NULL]        | 116.38        | [NULL]        | [NULL]        | 
+| "Food, Beverage & Tobacco"                                             | 94.25         | 99.44         | 0.00          | 4011.56       | 143.73        | 
+| "Forest and Paper Products - Forestry, Timber, Pulp and Paper, Rubber" | [NULL]        | [NULL]        | 685.31        | [NULL]        | [NULL]        | 
+| "Mining - Iron, Aluminum, Other Metals"                                | [NULL]        | [NULL]        | 2727.00       | [NULL]        | [NULL]        | 
+| "Pharmaceuticals, Biotechnology & Life Sciences"                       | 16135.50      | 40215.00      | [NULL]        | [NULL]        | [NULL]        | 
+| "Textiles, Apparel, Footwear and Luxury Goods"                         | [NULL]        | [NULL]        | 14.33         | [NULL]        | [NULL]        | 
+| Automobiles & Components                                               | 26037.80      | 20910.45      | 37146.68      | 40138.09      | [NULL]        | 
+| Capital Goods                                                          | 5015.83       | 10411.00      | 3505.00       | 796.13        | 18989.80      | 
+| Chemicals                                                              | [NULL]        | [NULL]        | 1949.03       | [NULL]        | [NULL]        | 
+| Commercial & Professional Services                                     | 144.63        | 119.25        | [NULL]        | 96.33         | 370.50        | 
+| Consumer Durables & Apparel                                            | 286.70        | 113.10        | [NULL]        | 40.07         | [NULL]        | 
+| Containers & Packaging                                                 | [NULL]        | [NULL]        | 373.50        | [NULL]        | [NULL]        | 
+| Electrical Equipment and Machinery                                     | [NULL]        | [NULL]        | 891050.73     | [NULL]        | [NULL]        | 
+| Energy                                                                 | 750.00        | [NULL]        | [NULL]        | 2506.00       | [NULL]        | 
+| Food & Beverage Processing                                             | [NULL]        | [NULL]        | 7.05          | [NULL]        | [NULL]        | 
+| Food & Staples Retailing                                               | [NULL]        | 77.30         | 70.60         | 0.50          | [NULL]        | 
+| Gas Utilities                                                          | [NULL]        | [NULL]        | 61.00         | [NULL]        | [NULL]        | 
+| Household & Personal Products                                          | 0.00          | [NULL]        | [NULL]        | [NULL]        | [NULL]        | 
+| Materials                                                              | 4177.35       | 1513.56       | [NULL]        | 1401.06       | 11217.74      | 
+| Media                                                                  | 2411.25       | 2411.25       | 479.75        | 602.67        | [NULL]        | 
+| Retailing                                                              | [NULL]        | 6.33          | 5.50          | [NULL]        | [NULL]        | 
+| Semiconductors & Semiconductor Equipment                               | [NULL]        | 16.67         | [NULL]        | 2.00          | [NULL]        | 
+| Semiconductors & Semiconductors Equipment                              | [NULL]        | [NULL]        | 1.00          | [NULL]        | [NULL]        | 
+| Software & Services                                                    | 1.50          | 29.20         | 1523.73       | 2538.44       | 690.00        | 
+| Technology Hardware & Equipment                                        | 1053.45       | 1780.44       | 1895.66       | 65.25         | 788.34        | 
+| Telecommunication Services                                             | 52.00         | 45.75         | 45.75         | [NULL]        | [NULL]        | 
+| Tires                                                                  | [NULL]        | [NULL]        | 1011.00       | [NULL]        | [NULL]        | 
+| Tobacco                                                                | [NULL]        | [NULL]        | 1.00          | [NULL]        | [NULL]        | 
+| Trading Companies & Distributors and Commercial Services & Supplies    | [NULL]        | [NULL]        | 39.83         | [NULL]        | [NULL]        | 
+| Utilities                                                              | 61.00         | [NULL]        | [NULL]        | 61.00         | [NULL]        | 
+
+
 
 
 
