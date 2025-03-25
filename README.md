@@ -54,9 +54,9 @@ SELECT * FROM countries LIMIT 5;
 | 4  | Canada       | 
 | 5  | Chile        | 
 
-## 2. Questions to research
-### 2.1 Which products contribute the most to carbon emissions?
-#### AVG Top 10 prodcuct
+# 2. Questions to research
+## 2.1 Which products contribute the most to carbon emissions?
+### AVG Top 10 prodcuct
 ```sql
 SELECT product_name, AVG(carbon_footprint_pcf) AS avg_carbon_footprint
 FROM product_emissions
