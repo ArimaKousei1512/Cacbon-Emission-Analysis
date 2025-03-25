@@ -1,4 +1,4 @@
-# Cacbon-Emission-Analysis
+# Carbon-Emission-Analysis
 
 # 1.Explore Data
 ## 1.1 Table 'product_name'
