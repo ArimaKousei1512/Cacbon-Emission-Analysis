@@ -146,14 +146,68 @@ LIMIT 1;
 | company_name                           | avg_carbon_footprint | industry_group                     | 
 | -------------------------------------: | -------------------: | ---------------------------------: | 
 | "Gamesa Corporación Tecnológica, S.A." | 2444616.0000         | Electrical Equipment and Machinery | 
-##
-
-
-
-
-
-
-
+## 2.4 What are the companies with the highest contribution to carbon emissions?
+###
+```sql
+SELECT c.company_name, SUM(p.carbon_footprint_pcf) AS total_emissions
+FROM product_emissions p
+JOIN companies c ON p.company_id = c.id
+GROUP BY c.company_name
+ORDER BY total_emissions DESC
+LIMIT 10;
+```
+| company_name                            | total_emissions | 
+| --------------------------------------: | --------------: | 
+| "Gamesa Corporación Tecnológica, S.A."  | 9778464         | 
+| Daimler AG                              | 1594300         | 
+| Volkswagen AG                           | 655960          | 
+| "Mitsubishi Gas Chemical Company, Inc." | 212016          | 
+| "Hino Motors, Ltd."                     | 191687          | 
+| Arcelor Mittal                          | 167007          | 
+| Weg S/A                                 | 160655          | 
+| General Motors Company                  | 137007          | 
+| "Lexmark International, Inc."           | 132012          | 
+| "Daikin Industries, Ltd."               | 105600          | 
+## 2.5 What are the countries with the highest contribution to carbon emissions?
+###    
+```sql
+SELECT co.country_name, SUM(p.carbon_footprint_pcf) AS total_emissions
+FROM product_emissions p
+JOIN countries co ON p.country_id = co.id
+GROUP BY co.country_name
+ORDER BY total_emissions DESC
+LIMIT 10;
+```
+| country_name | total_emissions | 
+| -----------: | --------------: | 
+| Spain        | 9786130         | 
+| Germany      | 2251225         | 
+| Japan        | 653237          | 
+| USA          | 518381          | 
+| South Korea  | 186965          | 
+| Brazil       | 169337          | 
+| Luxembourg   | 167007          | 
+| Netherlands  | 70417           | 
+| Taiwan       | 62875           | 
+| India        | 24574           | 
+## 2.6 What is the trend of carbon footprints (PCFs) over the years?
+###
+```sql
+SELECT year, AVG(carbon_footprint_pcf) AS total_emissions
+FROM product_emissions
+GROUP BY year
+ORDER BY year ASC;
+```
+| year | total_emissions | 
+| ---: | --------------: | 
+| 2013 | 2399.3190       | 
+| 2014 | 2457.5827       | 
+| 2015 | 43188.9044      | 
+| 2016 | 6891.5210       | 
+| 2017 | 4050.8452       | 
+## 2.7 Which industry groups have demonstrated the most notable decrease in carbon footprints (PCFs) over time?
+### 
+``` SQL
 
 
 
